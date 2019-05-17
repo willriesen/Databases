@@ -1,0 +1,83 @@
+1) What data types do each of these values represent?
+
+"A Clockwork Orange" = String
+42 = integer
+09/02/1945 = date
+98.7 = float
+$15.99 = float/currency
+
+2) Explain when a database would be used. Explain when a text file would be used.
+
+A: Use a database when storing lots of data and when there will be frequent adds, deletes, and edits. Use a text file when data needs to be read by humans..
+
+3) Describe one difference between SQL and other programming languages.
+
+A: Most programming languages are procedural. One must define the procedure or process to be followed to get the result. SQL is not procedural but rather declarative, meaning one declares what you want in your result and SQL takes care of the procedure of "how" under the hood.
+
+4) In your own words, explain how the pieces of a database system fit together at a high level.
+
+A: Data is stored in a table-like structure with the use of binary numbers(1,0). The table is an object. The columns and rows contain cells that hold the keys and values. All of the information is structured in a unique way so that the user can make queries for information. The database sends information in formats such as json files. When an API request is made from one server to another, the database sends the file.
+
+5) Explain the meaning of table, row, column, and value.
+
+Table -	 A collection of related data held in a structured format
+Row - 	 A single, implicitly structured data item in a table
+Column - A set of data values of a particular simple type, one value for each row
+Value -	 A representation of data contained in a Cell
+
+6) List three data types that can be used in a table.
+
+Strings
+Integers
+Floats
+
+7) Given this payments table, provide an English description of the following queries and include their results:
+
+
+     SELECT date, amount
+     FROM payments;
+
+     SELECT amount
+     FROM payments
+     WHERE amount > 500;
+
+     SELECT *
+     FROM payments
+     WHERE payee = 'Mega Foods';
+
+     ANSWERS:
+     What are the dates and amounts from the payments table?
+     The dates are May 1, 10, 15, 23 of 2016. The corresponding payments are $1500, $37, $124.93, and $54.72.
+
+     What are the amounts from the payments table that are greater than $500?
+     The amount greater than $500 is $1500.
+
+     From the payments table show me all columns where the Payee is Mega Foods.
+
+     2016-05-15 	Mega Foods	124.9300	Groceries
+
+8) Given this users table, write SQL queries using the following criteria and include the output:
+
+The email and sign-up date for the user named DeAndre Data.
+The user ID for the user with email 'aleesia.algorithm@uw.edu'.
+All the columns for the user ID equal to 4.
+
+ANSWERS:
+
+SELECT email, sign-up date
+FROM users
+WHERE user = "DeAndre Data";
+
+returns datad@comcast.net	2008-01-20
+
+SELECT userId
+FROM users
+WHERE email = "aleesia.algorithm@uw.edu";
+
+returns userid: 1
+
+SELECT *
+FROM users
+WHERE userId = 4;
+
+returns userid:4  name: Brandy Boolean	 email: bboolean@nasa.gov	signup: 1999-10-15
