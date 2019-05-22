@@ -64,8 +64,7 @@ mealsNeeded   numeric(2, 1)
 );
 Write a command that adds a column to track whether the guest sent a thank you card.
 
-ALTER TABLE guestList ADD COLUMN sentThankYou boolean SET DEFAULT 'n';
-'n' is a valid false state per PostgreSQL documentation
+ALTER TABLE guestList ADD COLUMN sentThankYou boolean;
 
 You have decided to move the data about the meals to another table, so write a command to remove the column storing the number meals from the wedding table.
 
@@ -74,6 +73,7 @@ ALTER TABLE guestList DROP COLUMN mealsNeeded;
 The guests will need a place to sit at the reception, so write a command that adds a column for table number.
 
 ALTER TABLE guestList ADD COLUMN tableNumber integer;
+
 The wedding is over and we do not need to keep this information, so write a command that deletes the table numbers from the database.
 
 ALTER TABLE guestList DROP COLUMN tableNumber;
@@ -87,31 +87,29 @@ author          text,
 genre           text,
 publishingDate  date,
 numberOfCopies  integer,
-availableCopies integer
+availableCopies integer,
 );
 
 Find three books and add their information to the table.
-INSERT INTO books (ISBN, title, author, genre, publishingDate, numberOfCopies,availableCopies)
-VALUES
-(9780078821738, 'Javascript Made Easy', 'John Smith', 'Operating Systems', 19 September 1997, 1, 1),
-(9781577315933, 'Zero to One', 'Peter Thiel', 'Entrepreneurship', 24 June 2015, 1, 1),
-(9781405125246, 'Principles', 'Ray Dalio', 'Self-Help', 13 July 2017, 1, 1),
-(9780618517657, 'The Lord of the Rings', 'J.R.R. Tolkien', 'Fantasy', 21 October 2004, 1, 1);
+
+INSERT INTO books VALUES (9780078821738, 'Javascript Made Easy', 'John Smith', 'Operating Systems', 04/08/2007, 2, 2);
+INSTER INTO books VALUES (9781577315933, 'Zero to One', 'Peter Thiel', 'Entrepreneurship', 06/24/2015, 2, 2);
+INSERT INTO books VALUES (9781405125246, 'Principles', 'Ray Dalio', 'Self-Help', 13 July 2017, 1, 0);
 
 Someone has just checked out one of the books. Change the number of available copies to 1 fewer.
 
-UPDATE books SET availableCopies = availableCopies - 1 WHERE ISBN=9780618517657
+UPDATE books SET availableCopies=1 WHERE ISBN=9781577315933
 
 Now one of the books has been added to the banned books list. Remove it from the table.
 
-DELETE FROM books WHERE ISBN=9780618517657;
+DELETE FROM books WHERE ISBN=9780078821738;
 
 Write a command to make a new table to hold spacecrafts. Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and its approximate miles from Earth. In addition to the table creation, provide commands that perform the following operations:
 
 CREATE TABLE spacecraft (
   id                    integer,
   name                  text,
-  yearLaunched          integer,
+  yearLaunched          date,
   originCountry         text,
   missionDescription    text,
   orbitingBody          text,
@@ -121,18 +119,17 @@ CREATE TABLE spacecraft (
 
 Add three non-Earth-orbiting satellites to the table.
 
-INSERT INTO spacecraft (id, name, yearLaunched, originCountry, missionDescription, orbitingBody, currentlyOperating, milesFromEarth)
-VALUES
-(1, 'Helios 2', 1976, West Germany/USA, 'Solar Observation', 'Sol', FALSE, 114000000)
-(2, 'Voyager 2', 1977, USA, 'Study outer planets, leave solar system', none, TRUE, 1.097e+10)
-(3, 'Cluster II', 2000, EU/USA, 'Study magnetosphere', 'Venus', TRUE, 35000000)
+INSERT INTO spacecraft VALUES (101, 'Helios 2', 1976, West Germany/USA, 'Solar Observation', "Earth", true, 1140)
+INSERT INTO spacecraft VALUES (102, 'Voyager 2', 1977, USA, 'Study outer planets, leave solar system', "Earth", false, 0)
+INSERT INTO spacecraft VALUES (103, 'Cluster II', 2000, EU/USA, 'Study magnetosphere', "Earth", false, 0)
 
 Remove one of the satellites from the table since it has just crashed into the planet.
 
-DELETE FROM spacecraft WHERE id=1;
+DELETE FROM spacecraft WHERE id=103;
 
 Edit another satellite because it is no longer operating and change the value to reflect that.
-UPDATE spacecraft SET currentlyOperating = FALSE WHERE id=2;
+
+UPDATE spacecraft SET currentlyOperating=false WHERE id=101;
 
 Write a command to create a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not you have read the email, and the id of the email chain it's in. Also provide commands that perform the following operations:
 
@@ -148,10 +145,9 @@ idOfChain  integer
 );
 
 Add three new emails to the inbox.
-INSERT INTO emails (id, subject, sender, recipients, body, timestamp, read, idOfChain) VALUES
-(001, 'Hello world', 'Brad', 'Will', 'Hey, how’s it going?', TIMESTAMP '2018-04-13 14:36:00', TRUE, 1001),
-(002, 'Hello world', 'Will', 'Brad', 'Fine.', TIMESTAMP '2018-04-13 14:40:00', TRUE, 1001)
-(003, 'Dinner', 'Will', 'Ryan', 'What are we doing for dinner?', TIMESTAMP '2018-04-13 19:45:00', TRUE, 2001);
+INSERT INTO emails VALUES (001, 'Hello world', 'Brad', 'Will', 'Hey, how’s it going?', '2018-04-13 14:36:00', true, 1001);
+INSERT INTO emails VALUES (002, 'Hello world', 'Will', 'Brad', 'Fine.', '2018-04-13 14:40:00', true, 1002);
+INSERT INTO emails VALUES (003, 'Dinner', 'Will', 'Ryan', 'What are we doing for dinner?', '2018-04-13 19:45:00', false, 1003);
 
 You deleted one of the emails, so write a command to remove the row from the inbox table.
 
