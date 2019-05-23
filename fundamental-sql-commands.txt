@@ -1,11 +1,11 @@
 Exercises
 Use the commands above to complete the following tasks, and submit the SQL statements. Real-world examples must be distinct from those used in the text.
 
-List the commands for adding, updating, and deleting data.
+1. List the commands for adding, updating, and deleting data.
 
 A: For adding data INSERT INTO command. For updating data UPDATE, or ALTER command, depending on if we just want to change data or actually change a table. For deleting data, DELETE command, or to delete an entire column DROP COLUMN and delete the entire table, DROP TABLE
 
-Explain the structure for each type of command.
+2. Explain the structure for each type of command.
 
 CREATE TABLE For each column, the statement provides a name and data type
 
@@ -34,10 +34,11 @@ ALTER TABLE `table-name` ADD COLUMN `new-column-name` `new-column-data-type` SET
 ALTER TABLE `table-name` DROP COLUMN column-name;
 DROP TABLE `table-name`;
 
-What are some of the data types that can be used in tables? Give a real-world example of each type.
+3. What are some of the data types that can be used in tables? Give a real-world example of each type.
+
 A: Strings of alphanumeric characters can used as addresses, names, labels, goals, subjects, almost anything. Integers are whole numbers often used as tuple keys, user ids, whole numbers, quantities. Floats are numbers like Integers but are not whole numbers, rather numbers with a decimal point and digits in a certain number of places to the right of the decimal point.
 
-Decide how to create a new table to hold a list of people invited to a wedding dinner. The table needs to have first and last names, whether they sent in their RSVP, the number of guests they are bringing, and the number of meals (1 for adults and 1/2 for children). Which data type would you use to store each of the following pieces of information?
+4. Decide how to create a new table to hold a list of people invited to a wedding dinner. The table needs to have first and last names, whether they sent in their RSVP, the number of guests they are bringing, and the number of meals (1 for adults and 1/2 for children). Which data type would you use to store each of the following pieces of information?
 
 First and last name.
 String
@@ -78,7 +79,7 @@ The wedding is over and we do not need to keep this information, so write a comm
 
 ALTER TABLE guestList DROP COLUMN tableNumber;
 
-Write a command to create a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
+5. Write a command to create a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
 
 CREATE TABLE books (
 ISBN            integer,
@@ -87,14 +88,18 @@ author          text,
 genre           text,
 publishingDate  date,
 numberOfCopies  integer,
-availableCopies integer,
+availableCopies integer
 );
 
 Find three books and add their information to the table.
 
-INSERT INTO books VALUES (9780078821738, 'Javascript Made Easy', 'John Smith', 'Operating Systems', 04/08/2007, 2, 2);
-INSTER INTO books VALUES (9781577315933, 'Zero to One', 'Peter Thiel', 'Entrepreneurship', 06/24/2015, 2, 2);
-INSERT INTO books VALUES (9781405125246, 'Principles', 'Ray Dalio', 'Self-Help', 13 July 2017, 1, 0);
+INSERT INTO books (ISBN, title, author, genre, publishingDate, numberOfCopies, availableCopies)
+VALUES 
+(9780078821738, 'Javascript Made Easy', 'John Smith', 'Operating Systems', 04/08/2007, 2, 2),
+
+(9781577315933, 'Zero to One', 'Peter Thiel', 'Entrepreneurship', 06/24/2015, 2, 2),
+
+(9781405125246, 'Principles', 'Ray Dalio', 'Self-Help', 07/13/2017, 1, 0);
 
 Someone has just checked out one of the books. Change the number of available copies to 1 fewer.
 
